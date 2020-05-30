@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <title>
+        Document
+    </title>
+</head>
+
+<body>
+    <script>
+        if ('geolocation' in navigator) {
+            console.log('goelocation available')
+            navigator.geolocation.getCurrentPosition(position => {
+                const lat = position.coords.latitude
+                const lon = position.coords.longitude
+                document.getElementById('latitude').textContent = lat
+                document.getElementById('longitude').textContent = lon
+                // console.log(position)
+
+                const data = { lat, lon };
+                var options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(data)
+                }
+                fetch('/api', options).then(function (Response) {
+                    console.log(Response.json())
+                })
+            })
+        }
+        else {
+            console.log('goelocation not available')
+        }
+    </script>
+    <h1>Project to get lat,lon</h1>
+    <p>Hello</p>
+    <p>
+        latitude:<span id='latitude'> </span>&deg;<br />
+        longitude:<span id='longitude'> </span>&deg;
+    </p>
+</body>
+
+</html>
