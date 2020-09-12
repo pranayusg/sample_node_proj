@@ -1,2 +1,2 @@
 # sample_node_proj
-Get lat lon from client and save to database on server
+Get client's lat lon and save to database on server
